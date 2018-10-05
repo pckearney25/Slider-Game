@@ -7,16 +7,14 @@ class Board extends React.Component {
       <Square
         value={this.props.squares[i].value}
         background={this.props.squares[i].background}
+        onClick={() => this.props.onClick(i)}
       />
     );
   }
 
   render() {
-    const status = "Order Me!";
-
     return (
       <div>
-        <div className="status">{status}</div>
         <div className="board">
           <div className="board-row">
             {this.renderSquare(0)}

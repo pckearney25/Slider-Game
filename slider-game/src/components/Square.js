@@ -5,9 +5,7 @@ function Square(props) {
     <button
       className="square"
       style={{ background: props.background }}
-      onClick={() => {
-        alert("click");
-      }}
+      onClick={props.onClick}
     >
       {props.value}
     </button>
