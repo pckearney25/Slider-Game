@@ -136,13 +136,38 @@ class Game extends React.Component {
 
 export default Game;
 
-//Modified Durstenfield shuffle
-//h/t https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 const shuffleArray = anArray => {
-  let array = anArray.slice();
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+  const anArrayLength = anArray.length;
+  let shuffledArray = [];
+
+  //array of position numbers to shuffle
+  let array = [];
+
+  for (let i = 0; i < anArrayLength; i++) {
+    array.push(i);
   }
-  return array;
+
+  // next we swap the numbers in the array we created.
+  //the swaps MUST involve the value of the last square in the input array (anArray)
+  for (let i = 0; i < Math.pow(array.length, 2); i++) {
+    let blankSquare = array.indexOf(anArrayLength - 1);
+    let swapSquare;
+    if (blankSquare % 2 === 0) {
+      //the swapSquare must be odd!
+      swapSquare = Math.floor(Math.random() * 4) * 2 + 1;
+    } else {
+      //the swapSquare must be even!
+      swapSquare = Math.floor(Math.random() * 5) * 2;
+    }
+    [array[blankSquare], array[swapSquare]] = [
+      array[swapSquare],
+      array[blankSquare]
+    ];
+  }
+
+  //next we populate the shuffledArray with the values of the input array (anArray)
+  for (let i = 0; i < anArrayLength; i++) {
+    shuffledArray.push(anArray[array[i]]);
+  }
+  return shuffledArray;
 };
