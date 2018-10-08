@@ -15,7 +15,14 @@ class Game extends React.Component {
         { value: 6, background: "white" },
         { value: 7, background: "white" },
         { value: 8, background: "white" },
-        { value: 9, background: "black" }
+        { value: 9, background: "white" },
+        { value: 10, background: "white" },
+        { value: 11, background: "white" },
+        { value: 12, background: "white" },
+        { value: 13, background: "white" },
+        { value: 14, background: "white" },
+        { value: 15, background: "white" },
+        { value: 16, background: "black" }
       ],
       boardSquares: [],
       move: 0,
@@ -28,6 +35,10 @@ class Game extends React.Component {
         {
           message: "Reset Game",
           styles: { color: "white", background: "red" }
+        },
+        {
+          message: "Play Again",
+          styles: { color: "white", background: "green" }
         }
       ]
     };
@@ -54,36 +65,64 @@ class Game extends React.Component {
 
   handleClick2(i) {
     let boardSquares = this.state.boardSquares;
+    let lastSquare = boardSquares.length;
     const checkArray = boardSquares.map(x => x.value);
     const move = this.state.move;
     const first = i;
-    const second = checkArray.indexOf(9);
+    const second = checkArray.indexOf(lastSquare);
     const check = JSON.stringify([first, second]);
+    //would like to generalize this as well eventually.
+    //for a 4X4 array
     const adjacent = [
       "[0,1]",
-      "[0,3]",
+      "[0,4]",
       "[1,0]",
       "[1,2]",
-      "[1,4]",
+      "[1,5]",
       "[2,1]",
-      "[2,5]",
-      "[3,0]",
-      "[3,4]",
-      "[3,6]",
-      "[4,1]",
-      "[4,3]",
+      "[2,3]",
+      "[2,6]",
+      "[3,2]",
+      "[3,7]",
+      "[4,0]",
       "[4,5]",
+      "[4,8]",
       "[4,7]",
-      "[5,2]",
+      "[5,1]",
       "[5,4]",
-      "[5,8]",
-      "[6,3]",
+      "[5,6]",
+      "[5,9]",
+      "[6,2]",
+      "[6,5]",
       "[6,7]",
-      "[7,4]",
+      "[6,10]",
+      "[7,3]",
       "[7,6]",
-      "[7,8]",
-      "[8,5]",
-      "[8,7]"
+      "[7,11]",
+      "[8,4]",
+      "[8,9]",
+      "[8,12]",
+      "[9,5]",
+      "[9,8]",
+      "[9,10]",
+      "[9,13]",
+      "[10,6]",
+      "[10,9]",
+      "[10,11]",
+      "[10,14]",
+      "[11,7]",
+      "[11,10]",
+      "[11,15]",
+      "[12,8]",
+      "[12,13]",
+      "[13,9]",
+      "[13,12]",
+      "[13,14]",
+      "[14,10]",
+      "[14,13]",
+      "[14,15]",
+      "[15,11]",
+      "[15,14]"
     ];
 
     if (move !== 0 && adjacent.indexOf(check) !== -1) {
@@ -136,38 +175,53 @@ class Game extends React.Component {
 
 export default Game;
 
+//The shuffleArray function will work with any square board.
 const shuffleArray = anArray => {
   const anArrayLength = anArray.length;
+  const rootLength = Math.pow(anArrayLength, 0.5);
   let shuffledArray = [];
 
-  //array of position numbers to shuffle
-  let array = [];
+  //First create an array of numbers to shuffle
+  //AND TWO ARRAYS corresponding to an evenSet and and oddSet
+  // evenSet if row value i + column value j is even
+  // oddSet if row value i + column value j is odd
+  let numberArray = [];
+  let evenSet = [];
+  let oddSet = [];
+  let count = 0;
 
-  for (let i = 0; i < anArrayLength; i++) {
-    array.push(i);
-  }
-
-  // next we swap the numbers in the array we created.
-  //the swaps MUST involve the value of the last square in the input array (anArray)
-  for (let i = 0; i < Math.pow(array.length, 2); i++) {
-    let blankSquare = array.indexOf(anArrayLength - 1);
-    let swapSquare;
-    if (blankSquare % 2 === 0) {
-      //the swapSquare must be odd!
-      swapSquare = Math.floor(Math.random() * 4) * 2 + 1;
-    } else {
-      //the swapSquare must be even!
-      swapSquare = Math.floor(Math.random() * 5) * 2;
+  for (let i = 0; i < rootLength; i++) {
+    for (let j = 0; j < rootLength; j++) {
+      numberArray.push(count);
+      if ((i + j) % 2 === 0) {
+        evenSet.push(count);
+      } else {
+        oddSet.push(count);
+      }
+      count++;
     }
-    [array[blankSquare], array[swapSquare]] = [
-      array[swapSquare],
-      array[blankSquare]
+  }
+  // Next swap the numbers in the numberArray we created.
+  //the swaps MUST involve the position value of the last square in the input array (anArray)
+  for (let i = 0; i < Math.pow(numberArray.length, 2); i++) {
+    let blankSquare = numberArray.indexOf(anArrayLength - 1);
+    let swapSquare;
+
+    if (evenSet.includes(blankSquare)) {
+      //the swapSquare must be in the oddSet!
+      swapSquare = oddSet[Math.floor(Math.random() * oddSet.length)];
+    } else {
+      //the swapSquare must be in the evenSet!
+      swapSquare = evenSet[Math.floor(Math.random() * evenSet.length)];
+    }
+    [numberArray[blankSquare], numberArray[swapSquare]] = [
+      numberArray[swapSquare],
+      numberArray[blankSquare]
     ];
   }
-
-  //next we populate the shuffledArray with the values of the input array (anArray)
+  //Finally populate the shuffledArray.
   for (let i = 0; i < anArrayLength; i++) {
-    shuffledArray.push(anArray[array[i]]);
+    shuffledArray.push(anArray[numberArray[i]]);
   }
   return shuffledArray;
 };
