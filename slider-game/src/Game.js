@@ -53,7 +53,8 @@ class Game extends React.Component {
         boardSquares: boardSquares,
         move: move + 1,
         message:
-          "Click to move an adjacent numbered square into the empty position."
+          "Click to move an adjacent numbered square into the empty position.",
+        gameComplete: false
       });
       //START THE STOPWATCH.
     } else {
@@ -127,18 +128,15 @@ class Game extends React.Component {
     ];
 
     if (move !== 0 && adjacent.indexOf(check) !== -1) {
-      console.log("Adjacent!");
       const newSquares = boardSquares.slice();
       newSquares[first] = boardSquares[second];
       newSquares[second] = boardSquares[first];
-      console.log(newSquares);
-      console.log(boardSquares);
+
       let gameComplete = arraysEqual(newSquares, this.state.squares);
-      console.log(gameComplete);
       if (gameComplete) {
         this.setState({
           gameComplete: gameComplete,
-          message: "Game Complete! Click button to play again"
+          message: "Game Complete! Click button to play again."
         });
       }
       this.setState({
@@ -251,10 +249,10 @@ const shuffleArray = anArray => {
   return shuffledArray;
 };
 
-function arraysEqual(arr1, arr2) {
+const arraysEqual = (arr1, arr2) => {
   if (arr1.length !== arr2.length) return false;
   for (var i = arr1.length; i--; ) {
     if (arr1[i] !== arr2[i]) return false;
   }
   return true;
-}
+};
