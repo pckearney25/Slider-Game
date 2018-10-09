@@ -27,6 +27,7 @@ class Game extends React.Component {
       boardSquares: [],
       move: 0,
       message: "Order the squares as shown to complete a game.",
+      gameComplete: false,
       button: [
         {
           message: "Start Game",
@@ -130,6 +131,16 @@ class Game extends React.Component {
       const newSquares = boardSquares.slice();
       newSquares[first] = boardSquares[second];
       newSquares[second] = boardSquares[first];
+      console.log(newSquares);
+      console.log(boardSquares);
+      let gameComplete = arraysEqual(newSquares, this.state.squares);
+      console.log(gameComplete);
+      if (gameComplete) {
+        this.setState({
+          gameComplete: gameComplete,
+          message: "Game Complete! Click button to play again"
+        });
+      }
       this.setState({
         move: move + 1,
         boardSquares: newSquares
@@ -139,8 +150,22 @@ class Game extends React.Component {
 
   render() {
     let move = this.state.move;
+    let gameComplete = this.state.gameComplete;
     const message = this.state.message;
-    const button = move > 0 ? this.state.button[1] : this.state.button[0];
+    let button = {};
+
+    if (move === 0) {
+      button = this.state.button[0];
+    }
+
+    if (move !== 0 && !gameComplete) {
+      button = this.state.button[1];
+    }
+
+    if (move !== 0 && gameComplete) {
+      button = this.state.button[2];
+    }
+
     const boardSquares =
       move > 0 ? this.state.boardSquares : this.state.squares;
 
@@ -225,3 +250,11 @@ const shuffleArray = anArray => {
   }
   return shuffledArray;
 };
+
+function arraysEqual(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  for (var i = arr1.length; i--; ) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+}
