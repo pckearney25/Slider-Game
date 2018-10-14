@@ -26,24 +26,54 @@ class Game extends React.Component {
       ],
       boardSquares: [],
       move: 0,
-      message: "Order the squares as shown to complete a game.",
-      gameComplete: false,
-      button: [
-        {
-          message: "Start Game",
-          styles: { color: "white", background: "green" }
-        },
-        {
-          message: "Reset Game",
-          styles: { color: "white", background: "red" }
-        },
-        {
-          message: "Play Again",
-          styles: { color: "white", background: "green" }
-        }
-      ]
+      time: 0,
+      gameComplete: false
     };
   }
+  message = [
+    "Order the squares as shown to complete a game.",
+    "Click to move an adjacent numbered square into the empty position.",
+    "Game Complete! Click button to play again."
+  ];
+  button = [
+    {
+      message: "Start Game",
+      styles: { color: "white", background: "green" }
+    },
+    {
+      message: "Reset Game",
+      styles: { color: "white", background: "red" }
+    },
+    {
+      message: "Play Again",
+      styles: { color: "white", background: "green" }
+    }
+  ];
+
+  intervalID;
+  clockRunning = false;
+
+  startTimer = () => {
+    if (!this.clockRunning) {
+      this.intervalId = setInterval(this.count, 1000);
+      this.clockRunning = true;
+    }
+  };
+
+  stopTimer = () => {
+    clearInterval(this.intervalId);
+    this.clockRunning = false;
+  };
+
+  resetTimer = () => {
+    this.setState({ time: 0 });
+  };
+
+  count = () => {
+    let time = this.state.time;
+    time++;
+    this.setState({ time: time });
+  };
 
   handleClick1() {
     let move = this.state.move;
@@ -52,16 +82,16 @@ class Game extends React.Component {
       this.setState({
         boardSquares: boardSquares,
         move: move + 1,
-        message:
-          "Click to move an adjacent numbered square into the empty position.",
         gameComplete: false
       });
-      //START THE STOPWATCH.
+      this.startTimer();
     } else {
       this.setState({
         move: 0,
-        message: "Order the squares as shown to complete a game."
+        time: 0
       });
+      this.stopTimer();
+      this.resetTimer();
     }
   }
 
@@ -75,7 +105,7 @@ class Game extends React.Component {
     const check = JSON.stringify([first, second]);
     //would like to generalize this as well eventually.
     //for a 4X4 array
-    const adjacent = [
+    const adjacentArray = [
       "[0,1]",
       "[0,4]",
       "[1,0]",
@@ -127,7 +157,7 @@ class Game extends React.Component {
       "[15,14]"
     ];
 
-    if (move !== 0 && adjacent.indexOf(check) !== -1) {
+    if (move !== 0 && adjacentArray.indexOf(check) !== -1) {
       const newSquares = boardSquares.slice();
       newSquares[first] = boardSquares[second];
       newSquares[second] = boardSquares[first];
@@ -135,9 +165,9 @@ class Game extends React.Component {
       let gameComplete = arraysEqual(newSquares, this.state.squares);
       if (gameComplete) {
         this.setState({
-          gameComplete: gameComplete,
-          message: "Game Complete! Click button to play again."
+          gameComplete: gameComplete
         });
+        this.stopTimer();
       }
       this.setState({
         move: move + 1,
@@ -149,19 +179,23 @@ class Game extends React.Component {
   render() {
     let move = this.state.move;
     let gameComplete = this.state.gameComplete;
-    const message = this.state.message;
-    let button = {};
+    let message;
+    let button;
+    const convertedTime = timeConverter(this.state.time);
 
     if (move === 0) {
-      button = this.state.button[0];
+      button = this.button[0];
+      message = this.message[0];
     }
 
     if (move !== 0 && !gameComplete) {
-      button = this.state.button[1];
+      button = this.button[1];
+      message = this.message[1];
     }
 
     if (move !== 0 && gameComplete) {
-      button = this.state.button[2];
+      button = this.button[2];
+      message = this.message[2];
     }
 
     const boardSquares =
@@ -175,12 +209,7 @@ class Game extends React.Component {
           </div>
           <div className="game-info">
             <div>{message}</div>
-            <div>
-              {
-                //Want to add a stopwatch here
-              }
-              STOPWATCH
-            </div>
+            <div>{convertedTime}</div>
             <button
               style={button.styles}
               onClick={() => {
@@ -255,4 +284,21 @@ const arraysEqual = (arr1, arr2) => {
     if (arr1[i] !== arr2[i]) return false;
   }
   return true;
+};
+
+const timeConverter = t => {
+  let minutes = Math.floor(t / 60);
+  let seconds = t - minutes * 60;
+
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  if (minutes === 0) {
+    minutes = "00";
+  } else if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  return minutes + ":" + seconds;
 };
