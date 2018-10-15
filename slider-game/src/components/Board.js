@@ -3,13 +3,23 @@ import Square from "./Square";
 
 class Board extends React.Component {
   renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i].value}
-        background={this.props.squares[i].background}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
+    if (this.props.gameMode === "Numbers") {
+      return (
+        <Square
+          value={this.props.squares[i].value}
+          style={this.props.squares[i].style1}
+          onClick={() => this.props.onClick(i)}
+        />
+      );
+    } else {
+      return (
+        <Square
+          value={this.props.squares[i].value}
+          style={this.props.squares[i].style2}
+          onClick={() => this.props.onClick(i)}
+        />
+      );
+    }
   }
 
   render() {

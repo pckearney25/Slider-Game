@@ -1,6 +1,22 @@
 import React from "react";
 import Board from "./components/Board";
 import Radio from "./components/Radio";
+import Background01 from "./images/freya01.jpg";
+import Background02 from "./images/freya02.jpg";
+import Background03 from "./images/freya03.jpg";
+import Background04 from "./images/freya04.jpg";
+import Background05 from "./images/freya05.jpg";
+import Background06 from "./images/freya06.jpg";
+import Background07 from "./images/freya07.jpg";
+import Background08 from "./images/freya08.jpg";
+import Background09 from "./images/freya09.jpg";
+import Background10 from "./images/freya10.jpg";
+import Background11 from "./images/freya11.jpg";
+import Background12 from "./images/freya12.jpg";
+import Background13 from "./images/freya13.jpg";
+import Background14 from "./images/freya14.jpg";
+import Background15 from "./images/freya15.jpg";
+import { shuffleArray, arraysEqual, timeConverter } from "./utils";
 import "./Game.css";
 
 class Game extends React.Component {
@@ -8,22 +24,146 @@ class Game extends React.Component {
     super(props);
     this.state = {
       squares: [
-        { value: 1, background: "white" },
-        { value: 2, background: "white" },
-        { value: 3, background: "white" },
-        { value: 4, background: "white" },
-        { value: 5, background: "white" },
-        { value: 6, background: "white" },
-        { value: 7, background: "white" },
-        { value: 8, background: "white" },
-        { value: 9, background: "white" },
-        { value: 10, background: "white" },
-        { value: 11, background: "white" },
-        { value: 12, background: "white" },
-        { value: 13, background: "white" },
-        { value: 14, background: "white" },
-        { value: 15, background: "white" },
-        { value: 16, background: "black" }
+        {
+          value: 1,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background01})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 2,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background02})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 3,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background03})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 4,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background04})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 5,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background05})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 6,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background06})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 7,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background07})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 8,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background08})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 9,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background09})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 10,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background10})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 11,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background11})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 12,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background12})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 13,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background13})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 14,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background14})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 15,
+          style1: { background: "white" },
+          style2: {
+            backgroundImage: `url(${Background15})`,
+            color: "#00000000",
+            backgroundSize: "cover"
+          }
+        },
+        {
+          value: 16,
+          style1: { background: "black" },
+          style2: { background: "black" }
+        }
       ],
       boardSquares: [],
       move: 0,
@@ -217,7 +357,11 @@ class Game extends React.Component {
       <div className="Game">
         <div className="game">
           <div className="game-board">
-            <Board squares={boardSquares} onClick={i => this.handleClick2(i)} />
+            <Board
+              squares={boardSquares}
+              gameMode={this.state.gameMode}
+              onClick={i => this.handleClick2(i)}
+            />
           </div>
           <div className="game-info">
             <div>{message}</div>
@@ -242,79 +386,3 @@ class Game extends React.Component {
 }
 
 export default Game;
-
-//The shuffleArray function will work with any square board.
-const shuffleArray = anArray => {
-  const anArrayLength = anArray.length;
-  const rootLength = Math.pow(anArrayLength, 0.5);
-  let shuffledArray = [];
-
-  //First create an array of numbers to shuffle
-  //AND TWO ARRAYS corresponding to an evenSet and and oddSet
-  // evenSet if row value i + column value j is even
-  // oddSet if row value i + column value j is odd
-  let numberArray = [];
-  let evenSet = [];
-  let oddSet = [];
-  let count = 0;
-
-  for (let i = 0; i < rootLength; i++) {
-    for (let j = 0; j < rootLength; j++) {
-      numberArray.push(count);
-      if ((i + j) % 2 === 0) {
-        evenSet.push(count);
-      } else {
-        oddSet.push(count);
-      }
-      count++;
-    }
-  }
-  // Next swap the numbers in the numberArray we created.
-  //the swaps MUST involve the position value of the last square in the input array (anArray)
-  for (let i = 0; i < Math.pow(numberArray.length, 2); i++) {
-    let blankSquare = numberArray.indexOf(anArrayLength - 1);
-    let swapSquare;
-
-    if (evenSet.includes(blankSquare)) {
-      //the swapSquare must be in the oddSet!
-      swapSquare = oddSet[Math.floor(Math.random() * oddSet.length)];
-    } else {
-      //the swapSquare must be in the evenSet!
-      swapSquare = evenSet[Math.floor(Math.random() * evenSet.length)];
-    }
-    [numberArray[blankSquare], numberArray[swapSquare]] = [
-      numberArray[swapSquare],
-      numberArray[blankSquare]
-    ];
-  }
-  //Finally populate the shuffledArray.
-  for (let i = 0; i < anArrayLength; i++) {
-    shuffledArray.push(anArray[numberArray[i]]);
-  }
-  return shuffledArray;
-};
-
-const arraysEqual = (arr1, arr2) => {
-  if (arr1.length !== arr2.length) return false;
-  for (var i = arr1.length; i--; ) {
-    if (arr1[i] !== arr2[i]) return false;
-  }
-  return true;
-};
-
-const timeConverter = t => {
-  let minutes = Math.floor(t / 60);
-  let seconds = t - minutes * 60;
-
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-
-  if (minutes === 0) {
-    minutes = "00";
-  } else if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-
-  return minutes + ":" + seconds;
-};
