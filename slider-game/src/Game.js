@@ -1,5 +1,6 @@
 import React from "react";
 import Board from "./components/Board";
+import Radio from "./components/Radio";
 import "./Game.css";
 
 class Game extends React.Component {
@@ -27,7 +28,8 @@ class Game extends React.Component {
       boardSquares: [],
       move: 0,
       time: 0,
-      gameComplete: false
+      gameComplete: false,
+      gameMode: "Numbers"
     };
   }
   message = [
@@ -176,6 +178,16 @@ class Game extends React.Component {
     }
   }
 
+  handleInputChange = event => {
+    // Getting the value of the input which triggered the change
+    const { value } = event.target;
+
+    // Updating the input's state
+    this.setState({
+      gameMode: value
+    });
+  };
+
   render() {
     let move = this.state.move;
     let gameComplete = this.state.gameComplete;
@@ -218,6 +230,10 @@ class Game extends React.Component {
             >
               {button.message}
             </button>
+            <Radio
+              gameMode={this.state.gameMode}
+              onChange={this.handleInputChange}
+            />
           </div>
         </div>
       </div>
