@@ -1,6 +1,9 @@
 import React from "react";
+import Header from "./components/Header";
 import Board from "./components/Board";
 import Radio from "./components/Radio";
+import GameButton from "./components/GameButton";
+import Footer from "./components/Footer";
 import Background01 from "./images/freya01.jpg";
 import Background02 from "./images/freya02.jpg";
 import Background03 from "./images/freya03.jpg";
@@ -173,22 +176,22 @@ class Game extends React.Component {
     };
   }
   message = [
-    "Order the squares as shown to complete a game.",
-    "Click to move an adjacent numbered square into the empty position.",
+    "Order the squares as shown. Click button to start game",
+    "Click an ajacent square to move into the empty position.",
     "Game Complete! Click button to play again."
   ];
   button = [
     {
       message: "Start Game",
-      styles: { color: "white", background: "green" }
+      styles: { color: "#FFC013", background: "#3A0ED1" }
     },
     {
       message: "Reset Game",
-      styles: { color: "white", background: "red" }
+      styles: { color: "#1A065F", background: "#FFBB00" }
     },
     {
       message: "Play Again",
-      styles: { color: "white", background: "green" }
+      styles: { color: "#FFC013", background: "#3A0ED1" }
     }
   ];
 
@@ -355,6 +358,7 @@ class Game extends React.Component {
 
     return (
       <div className="Game">
+        <Header />
         <div className="game">
           <div className="game-board">
             <Board
@@ -363,23 +367,24 @@ class Game extends React.Component {
               onClick={i => this.handleClick2(i)}
             />
           </div>
+
           <div className="game-info">
             <div>{message}</div>
-            <div>{convertedTime}</div>
-            <button
+            <div>Timer: {convertedTime}</div>
+            <GameButton
               style={button.styles}
               onClick={() => {
                 this.handleClick1();
               }}
-            >
-              {button.message}
-            </button>
+              message={button.message}
+            />
             <Radio
               gameMode={this.state.gameMode}
               onChange={this.handleInputChange}
             />
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

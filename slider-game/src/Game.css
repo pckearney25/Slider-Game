@@ -3,66 +3,27 @@
 }
 
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  font: 1em "Century Gothic", Futura, sans-serif;
+
+  color: #1a065f;
 }
 
-ol,
-ul {
-  padding-left: 30px;
-}
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+h1 {
+  font-size: 2.5em;
 }
 
 .status {
   margin-bottom: 10px;
 }
 
-.square {
-  color: #000000;
-  border: 1px solid #999;
-  float: left;
-  font-size: 40px;
-  font-weight: bold;
-  line-height: 80px;
-  height: 80px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 80px;
-}
-
-.square:focus {
-  outline: none;
-}
-
-.kbd-navigation .square:focus {
-  background: #ddd;
-}
-
 .game {
   display: flex;
   flex-direction: row;
-}
-
-.board {
-  border: 5px solid blue;
+  margin-top: 7.5em;
+  margin-bottom: 2.5em;
+  height: 500px;
 }
 
 .game-info {
   margin-left: 20px;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

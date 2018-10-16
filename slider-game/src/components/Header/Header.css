@@ -1,0 +1,18 @@
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #e5a800;
+  color: #8a6500;
+  font-weight: bold;
+  z-index: 5;
+  border-bottom: 2px solid #2c0b9e;
+}
+
+header div {
+  flex-grow: 1;
+  padding: 1em 0em 1em 0em;
+}

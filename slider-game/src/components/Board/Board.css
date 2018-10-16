@@ -1,0 +1,9 @@
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.board {
+  border: 5px solid #2c0b9e;
+}
