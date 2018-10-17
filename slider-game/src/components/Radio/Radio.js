@@ -3,15 +3,15 @@ import "./Radio.css";
 
 function Radio(props) {
   return (
-    <div>
-      <h4>Game Mode: {props.gameMode}</h4>
+    <div className="radio-form-div">
+      <div className="game-mode-div">Game Mode: {props.gameMode}</div>
       <form className="radio-form">
         <div className="radiobox">
-          <label className="radio">
+          <label className="radio-container">
             Numbers
             <input
               type="radio"
-              name="game-mode"
+              name="radio"
               value="Numbers"
               onChange={props.onChange}
               defaultChecked
@@ -20,11 +20,11 @@ function Radio(props) {
           </label>
         </div>
         <div className="radiobox">
-          <label className="radio">
+          <label className="radio-container">
             Picture
             <input
               type="radio"
-              name="game-mode"
+              name="radio"
               value="Picture"
               onChange={props.onChange}
             />

@@ -1,11 +1,11 @@
 footer {
-  background-color: #0b56cd;
-  color: #05265c;
+  background-color: #2c0b9e;
+  color: #b78700;
   font-size: 1.1em;
   text-align: center;
   padding-top: 15px;
   padding-bottom: 20px;
-  border-top: 2px solid#2c0b9e;
+  border-top: 2px solid#23097E;
 }
 
 .soc-media-div {
@@ -18,7 +18,7 @@ footer {
 
 .fab {
   font-size: 36px;
-  color: #05265c;
+  color: #b78700;
 }
 
 .hvr-grow {

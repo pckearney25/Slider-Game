@@ -4,26 +4,51 @@
 
 body {
   font: 1em "Century Gothic", Futura, sans-serif;
-
   color: #1a065f;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
 }
 
 h1 {
   font-size: 2.5em;
 }
 
-.status {
-  margin-bottom: 10px;
+h6 {
+  font-size: 1.25em;
 }
 
-.game {
+.game-container {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   margin-top: 7.5em;
   margin-bottom: 2.5em;
   height: 500px;
+  justify-content: center;
 }
 
-.game-info {
-  margin-left: 20px;
+.game-box {
+  width: 280px;
+  margin: 0px 10px 0px 10px;
+}
+
+#message-div,
+#timer,
+#converted-time {
+  font-weight: bold;
+}
+
+#timer-div {
+  margin-top: 20px;
+}
+
+#message-div {
+  margin-top: 15px;
+}
+
+.footer {
+  flex-shrink: 0;
 }

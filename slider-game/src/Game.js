@@ -176,14 +176,14 @@ class Game extends React.Component {
     };
   }
   message = [
-    "Order the squares as shown. Click button to start game",
+    "Order the squares as shown. Click button to start game.",
     "Click an ajacent square to move into the empty position.",
     "Game Complete! Click button to play again."
   ];
   button = [
     {
       message: "Start Game",
-      styles: { color: "#FFC013", background: "#3A0ED1" }
+      styles: { color: "#FFC013", background: "#2c0b9e" }
     },
     {
       message: "Reset Game",
@@ -191,7 +191,7 @@ class Game extends React.Component {
     },
     {
       message: "Play Again",
-      styles: { color: "#FFC013", background: "#3A0ED1" }
+      styles: { color: "#FFC013", background: "#2c0b9e" }
     }
   ];
 
@@ -358,30 +358,36 @@ class Game extends React.Component {
 
     return (
       <div className="Game">
-        <Header />
-        <div className="game">
-          <div className="game-board">
-            <Board
-              squares={boardSquares}
-              gameMode={this.state.gameMode}
-              onClick={i => this.handleClick2(i)}
-            />
-          </div>
+        <div className="content">
+          <Header />
+          <div className="game-container">
+            <div className="game-box">
+              <Board
+                squares={boardSquares}
+                gameMode={this.state.gameMode}
+                onClick={i => this.handleClick2(i)}
+              />
+            </div>
 
-          <div className="game-info">
-            <div>{message}</div>
-            <div>Timer: {convertedTime}</div>
-            <GameButton
-              style={button.styles}
-              onClick={() => {
-                this.handleClick1();
-              }}
-              message={button.message}
-            />
-            <Radio
-              gameMode={this.state.gameMode}
-              onChange={this.handleInputChange}
-            />
+            <div className="game-box">
+              <div id="message-div">{message}</div>
+              <div id="timer-div">
+                <span id="timer">{`Timer: `}</span>
+                <span id="converted-time">{convertedTime}</span>
+                <span>{` (mm:ss)`}</span>
+              </div>
+              <GameButton
+                style={button.styles}
+                onClick={() => {
+                  this.handleClick1();
+                }}
+                message={button.message}
+              />
+              <Radio
+                gameMode={this.state.gameMode}
+                onChange={this.handleInputChange}
+              />
+            </div>
           </div>
         </div>
         <Footer />
