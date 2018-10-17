@@ -390,7 +390,7 @@ class Game extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
+        <Footer className="footer" />
       </div>
     );
   }
