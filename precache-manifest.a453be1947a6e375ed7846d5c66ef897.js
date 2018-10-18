@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/Slider-Game/static/media/freya07.8f2a0f7d.jpg"
   },
   {
-    "revision": "d3fe2b7d0b6c8fcbe312",
-    "url": "/Slider-Game/static/css/main.b6c69b7c.chunk.css"
+    "revision": "1ac8569586e53f208926",
+    "url": "/Slider-Game/static/css/main.4d16c551.chunk.css"
   },
   {
     "revision": "5624220e852419f7430f",
@@ -40,8 +40,8 @@ self.__precacheManifest = [
     "url": "/Slider-Game/static/media/freya06.1cffbec2.jpg"
   },
   {
-    "revision": "d3fe2b7d0b6c8fcbe312",
-    "url": "/Slider-Game/static/js/main.d3fe2b7d.chunk.js"
+    "revision": "1ac8569586e53f208926",
+    "url": "/Slider-Game/static/js/main.1ac85695.chunk.js"
   },
   {
     "revision": "4f36cfc356009812fcb383b9c1149c83",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/Slider-Game/static/media/freya15.52b6e61c.jpg"
   },
   {
-    "revision": "fb8f3b054f92b3837824e2c43a140947",
+    "revision": "9904657c502f976dd015d3cefef6a2c8",
     "url": "/Slider-Game/index.html"
   }
 ];

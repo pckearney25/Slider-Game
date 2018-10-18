@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/Slider-Game/precache-manifest.53d7b32fb69443ad192cf1e9778fcc4d.js"
+  "/Slider-Game/precache-manifest.a453be1947a6e375ed7846d5c66ef897.js"
 );
 
 workbox.clientsClaim();
