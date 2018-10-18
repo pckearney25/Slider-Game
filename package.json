@@ -2,7 +2,7 @@
   "name": "slider-game",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://myusername.github.io/Slider-Game",
+  "homepage": "http://pckearney25.github.io/Slider-Game/",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "react": "^16.5.2",
