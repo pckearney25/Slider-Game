@@ -1,7 +1,7 @@
 {
-  "main.css": "/Slider-Game/static/css/main.910a21ce.chunk.css",
-  "main.js": "/Slider-Game/static/js/main.9d3c8de5.chunk.js",
-  "main.js.map": "/Slider-Game/static/js/main.9d3c8de5.chunk.js.map",
+  "main.css": "/Slider-Game/static/css/main.b6c69b7c.chunk.css",
+  "main.js": "/Slider-Game/static/js/main.d3fe2b7d.chunk.js",
+  "main.js.map": "/Slider-Game/static/js/main.d3fe2b7d.chunk.js.map",
   "static/js/1.5624220e.chunk.js": "/Slider-Game/static/js/1.5624220e.chunk.js",
   "static/js/1.5624220e.chunk.js.map": "/Slider-Game/static/js/1.5624220e.chunk.js.map",
   "runtime~main.js": "/Slider-Game/static/js/runtime~main.bbf40e81.js",
@@ -21,8 +21,8 @@
   "static/media/freya13.jpg": "/Slider-Game/static/media/freya13.1aafd93b.jpg",
   "static/media/freya02.jpg": "/Slider-Game/static/media/freya02.9f74e2a8.jpg",
   "static/media/freya15.jpg": "/Slider-Game/static/media/freya15.52b6e61c.jpg",
-  "static/css/main.910a21ce.chunk.css.map": "/Slider-Game/static/css/main.910a21ce.chunk.css.map",
+  "static/css/main.b6c69b7c.chunk.css.map": "/Slider-Game/static/css/main.b6c69b7c.chunk.css.map",
   "index.html": "/Slider-Game/index.html",
-  "precache-manifest.e7ec009cfb0b695e55829be988e3eec0.js": "/Slider-Game/precache-manifest.e7ec009cfb0b695e55829be988e3eec0.js",
+  "precache-manifest.53d7b32fb69443ad192cf1e9778fcc4d.js": "/Slider-Game/precache-manifest.53d7b32fb69443ad192cf1e9778fcc4d.js",
   "service-worker.js": "/Slider-Game/service-worker.js"
 }
